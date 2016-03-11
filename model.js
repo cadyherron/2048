@@ -10,15 +10,9 @@ var model = {
   },
 
 
-  // need to save current count of squares
-  squareCount: 0,
-
-
-
   // generate first random square
   createNewSquare: function() {
     model.allSquares.push(new Square(model.randomCoord(), model.randomCoord(),"2"));
-    model.squareCount++;  
   },
 
 
@@ -39,7 +33,6 @@ var model = {
     if (unique === true) {
       console.log("square was unique, adding...")
       model.allSquares.push(newSquare);
-      model.squareCount++; 
     } else {
       console.log("square was NOT unique...")
       model.createUniqueSquare();
