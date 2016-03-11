@@ -24,19 +24,25 @@ var model = {
 
   // make sure new square is not the same as an existing square
   createUniqueSquare: function() {
-    var unique = false;
+    var unique = true;
     var newSquare = new Square(model.randomCoord(), 
                                model.randomCoord(),"2");
 
     for (sq in model.allSquares) {
-      if (newSquare != model.allSquares[sq]) {
-        unique = true;
-      } 
+
+      if (newSquare["row"] == model.allSquares[sq]["row"] && newSquare["col"] == model.allSquares[sq]["col"]) {
+        unique = false;
+        console.log("Unique is false!")
+      }
     }
 
-    if (unique) {
+    if (unique === true) {
+      console.log("square was unique, adding...")
       model.allSquares.push(newSquare);
       model.squareCount++; 
+    } else {
+      console.log("square was NOT unique...")
+      model.createUniqueSquare();
     }
 
                
@@ -48,7 +54,12 @@ var model = {
 
 
   // game is over when board is full and no more moves
-
+  checkGameOver: function() {
+    if (model.allSquares.length === model.maxSquares) {
+      console.log("Game Over!")
+      alert("Game Over!")
+    }
+  }
 
 }
 

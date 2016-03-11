@@ -12,10 +12,12 @@ var controller = {
   direction: "",
 
 
-  // move squares AND add a new one
+  // move squares AND add a new unique one
   moveSquares: function() {
 
-    model.createNewSquare();
+    model.createUniqueSquare();
+    view.render(model.allSquares);
+    model.checkGameOver();
   },
 
 

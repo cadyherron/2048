@@ -38,8 +38,9 @@ var view = {
           console.log("Down!")
           break;
         }
+        // move squares after each keypress
         controller.moveSquares()
-      }) // end of keydown fn
+      })
     }
 
   },
