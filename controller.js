@@ -14,6 +14,8 @@ var controller = {
 
   // move squares AND add a new unique one
   moveSquares: function() {
+    model.moveSquaresDown();
+    
 
     model.createUniqueSquare();
     view.render(model.allSquares);
@@ -24,7 +26,6 @@ var controller = {
   clearBoard: function() {
     model.allSquares = [];
     controller.init();
-    // view.render(model.allSquares);
   },
 
 

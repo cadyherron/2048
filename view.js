@@ -11,7 +11,7 @@ var view = {
       $('button').click(function() {
         // reset game
         console.log("New Game!");
-        view.hideSquares();
+        view.hideAllSquares();
         controller.clearBoard();
       })
     },
@@ -50,6 +50,8 @@ var view = {
 
 
   render: function(allSquares) {
+    view.hideAllSquares();
+    
     for (var i = 0; i < allSquares.length; i++) {
       // turn Square attributes into view attributes
       var dataRow = allSquares[i]["row"];
@@ -62,7 +64,7 @@ var view = {
   },
 
 
-  hideSquares: function() {
+  hideAllSquares: function() {
     $('.show-square').html("");
     $('.show-square').removeClass('show-square');
   }

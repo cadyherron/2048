@@ -1,3 +1,12 @@
+
+function Square(row, col, value) {
+  this.row = row;
+  this.col = col;
+  this.value = value;
+}
+
+
+
 var model = {
 
   allSquares: [],
@@ -22,27 +31,95 @@ var model = {
     var newSquare = new Square(model.randomCoord(), 
                                model.randomCoord(),"2");
 
-    for (sq in model.allSquares) {
+    for (var sq in model.allSquares) {
 
       if (newSquare["row"] == model.allSquares[sq]["row"] && newSquare["col"] == model.allSquares[sq]["col"]) {
         unique = false;
-        console.log("Unique is false!")
       }
     }
 
     if (unique === true) {
-      console.log("square was unique, adding...")
-      model.allSquares.push(newSquare);
+      model.allSquares.push(newSquare); 
     } else {
-      console.log("square was NOT unique...")
       model.createUniqueSquare();
     }
 
-               
   },
 
 
   // logic for when to combine squares
+
+
+  getAllCoords: function() {
+    var allCoords = []
+    for (var sq in model.allSquares) {
+      allCoords.push([model.allSquares[sq]["row"], model.allSquares[sq]["col"]])
+    }
+    return allCoords;
+  },
+
+
+
+  count: function(array, item) {
+  // var count = function(array, item) {
+    var count = 0;    
+    for (var instance in array) {
+      if(JSON.stringify(array[instance]) == JSON.stringify(item)) {
+        count++;
+        var index = instance
+      }
+    }
+    return [count, index]; // return count AND index of duplicate
+  },
+
+
+
+  checkForMatch: function(item1, item2) {
+    return (item1.value == item2.value)
+  },
+
+
+
+
+  moveSquaresDown: function() {
+    var coords = model.getAllCoords();
+
+    for (var sq in model.allSquares) {
+
+      var that = model.allSquares[sq] // shorthand
+      var newRow = String(Number(that["row"]) + 1)
+      var potentialCoords = [newRow, model.allSquares[sq]["col"]]
+
+
+      that["row"] = newRow;       // increase the row for now
+
+
+      // don't push the square off the board
+      if (that["row"] === "5") {
+        that["row"] = String(Number(that["row"]) - 1);
+      }
+
+
+      // don't push a square on top of another one:
+      var result = model.count(coords, potentialCoords)
+
+      if (result[0] == 1) {
+        console.log("duplicate!")
+
+        // check for match
+        if (model.checkForMatch(that, model.allSquares[result[1]])) {
+          // combine squares
+          console.log("combine squares!")
+          that.value = String(that.value * 2); // double the value
+          model.allSquares.splice(result[1], 1)// remove the other square
+        } else {
+          // no match: don't change square
+          console.log("no match!")
+          that["row"] = String(Number(that["row"]) - 1);
+        }
+      }
+    }
+  },
 
 
 
@@ -56,11 +133,3 @@ var model = {
 
 }
 
-
-
-
-function Square(row, col, value) {
-  this.row = row;
-  this.col = col;
-  this.value = value;
-}
