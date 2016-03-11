@@ -10,7 +10,9 @@ var view = {
     newGame: function() {
       $('button').click(function() {
         // reset game
-        console.log("Registered!")
+        console.log("New Game!");
+        view.hideSquares();
+        controller.clearBoard();
       })
     },
 
@@ -57,8 +59,12 @@ var view = {
       square.html(allSquares[i]["value"])
       square.addClass('show-square')
     }
+  },
 
 
+  hideSquares: function() {
+    $('.show-square').html("");
+    $('.show-square').removeClass('show-square');
   }
 
 

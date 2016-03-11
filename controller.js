@@ -21,6 +21,11 @@ var controller = {
   },
 
 
+  clearBoard: function() {
+    model.allSquares = [];
+    controller.init();
+    // view.render(model.allSquares);
+  },
 
 
 
