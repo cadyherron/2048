@@ -16,6 +16,7 @@ var view = {
 
     keypressListener: function(){
       $( document ).keydown(function(e) {
+        e.preventDefault();
         switch(e.which) {
           case 37:
           controller.direction = "left";
@@ -37,8 +38,8 @@ var view = {
           console.log("Down!")
           break;
         }
-        e.preventDefault();
-      })
+        controller.moveSquares()
+      }) // end of keydown fn
     }
 
   },

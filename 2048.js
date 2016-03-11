@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  
-  view.init();
+
   controller.init();
+  view.init();
 
 })

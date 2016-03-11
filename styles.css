@@ -3,9 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
-  /* Better text styling */
-  font: bold 14px Courier new, sans-serif;
+  font: bold 14px "Clear Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
@@ -27,4 +25,5 @@ body {
 .show-square {
   background: #ccc;
   font-size: 72px;
+  line-height: 185px;
 }

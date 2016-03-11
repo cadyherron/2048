@@ -1,7 +1,10 @@
 var controller = {
 
   init: function() {
+    // start the board with two squares
     model.createNewSquare();
+    model.createUniqueSquare();
+
     view.render(model.allSquares);
   },
 
@@ -9,7 +12,11 @@ var controller = {
   direction: "",
 
 
+  // move squares AND add a new one
+  moveSquares: function() {
 
+    model.createNewSquare();
+  },
 
 
 
