@@ -115,7 +115,9 @@ var model = {
         } else {
           // no match: don't change square
           console.log("no match!")
-          that["row"] = String(Number(that["row"]) - 1);
+          if (that["row"] === "4" ) {
+            that["row"] = String(Number(that["row"]) - 1);
+          }          
         }
       }
 
