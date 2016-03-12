@@ -130,6 +130,55 @@ var model = {
   },
 
 
+  moveSquaresRight: function() {
+    var coords = model.getAllCoords();
+
+    for (var sq in model.allSquares) {
+
+      var that = model.allSquares[sq]  // shorthand
+      var newCol = String(Number(that["col"]) + 1)
+      var potentialCoords = [model.allSquares[sq]["row"], newCol]
+
+
+      that["col"] = newCol;       // increase the col for now
+
+
+      // don't push the square off the board
+      if (that["col"] === "5") {
+        that["col"] = String(Number(that["col"]) - 1);
+      }
+
+
+      // don't push a square on top of another one:
+      var result = model.count(coords, potentialCoords)
+
+      if (result[0] == 1) {
+        console.log("duplicate!")
+
+        // check for match
+        if (model.checkForMatch(that, model.allSquares[result[1]])) {
+          // combine squares
+          console.log("combine squares!")
+          that.value = String(that.value * 2); // double the value
+          model.allSquares.splice(result[1], 1)// remove the other square
+        } else {
+          // no match: don't change square
+          console.log("no match!")
+          if (that["col"] === "4" ) {
+            that["col"] = String(Number(that["col"]) - 1);
+          }          
+        }
+      }
+
+      // keep the square moving until it hits another one:
+      else {
+        // model.moveSquaresDown();
+      }
+
+    }
+  },
+
+
   updateScore: function() {
     var score = 0;
     for (var sq in model.allSquares) {

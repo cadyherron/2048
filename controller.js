@@ -14,7 +14,7 @@ var controller = {
 
   // move squares AND add a new unique one
   moveSquares: function() {
-    model.moveSquaresDown();
+    model.moveSquaresRight();
     model.createUniqueSquare();
     view.render(model.allSquares);
     model.updateScore();
