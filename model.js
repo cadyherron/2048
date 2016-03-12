@@ -9,9 +9,9 @@ function Square(row, col, value) {
 
 var model = {
 
+
   allSquares: [],
   maxSquares: 16,
-  squareCoords: ["1", "2", "3", "4"],
 
 
   randomCoord: function() { 
@@ -118,18 +118,44 @@ var model = {
           that["row"] = String(Number(that["row"]) - 1);
         }
       }
+
+      // keep the square moving until it hits another one:
+      else {
+        // model.moveSquaresDown();
+      }
+
     }
   },
 
 
+  updateScore: function() {
+    var score = 0;
+    for (var sq in model.allSquares) {
+      score += Number(model.allSquares[sq]["value"])
+    }
+    return score;
+  },
 
-  // game is over when board is full and no more moves
+
+  getCurrentScore: function(){
+    return this.score;
+  },
+
+
+  // game is over when board is full OR square has a value of 2048
   checkGameOver: function() {
     if (model.allSquares.length === model.maxSquares) {
       console.log("Game Over!")
       alert("Game Over!")
     }
-  }
+
+    for (var sq in model.allSquares) {
+      if (model.allSquares[sq]["value"] == "2048") {
+        console.log("Congratulations, you win!")
+        alert("Congratulations, you win!")        
+      }
+    }
+  },
 
 }
 

@@ -51,7 +51,7 @@ var view = {
 
   render: function(allSquares) {
     view.hideAllSquares();
-    
+
     for (var i = 0; i < allSquares.length; i++) {
       // turn Square attributes into view attributes
       var dataRow = allSquares[i]["row"];
@@ -60,6 +60,8 @@ var view = {
 
       square.html(allSquares[i]["value"])
       square.addClass('show-square')
+
+      $('h3.pull-right').html(controller.getScore() + " points")
     }
   },
 
